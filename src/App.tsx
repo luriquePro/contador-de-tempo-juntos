@@ -276,7 +276,7 @@ const ContadorNamoro = () => {
   const visibleComents = showAllComents ? coments : coments.slice(-2);
 
   return (
-    <div className='p-3 md:p-0 max-w-lg mx-auto bg-white rounded-lg shadow-md'>
+    <div className='p-3 md:p-2 max-w-lg mx-auto bg-white rounded-lg shadow-md md:shadow-none'>
       {/* Cabeçalho */}
       <div className='flex items-center p-3 border-b'>
         <div className='h-12 w-12 md:h-18 md:w-18 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center'>
@@ -295,6 +295,7 @@ const ContadorNamoro = () => {
           </svg>
         </div>
       </div>
+
       {/* Contador de tempo (acima do carrossel) */}
       <div className='bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4'>
         <div className='flex items-center justify-center gap-2 mb-2'>
@@ -335,6 +336,7 @@ const ContadorNamoro = () => {
 
         <div className='text-center mt-2 text-sm font-light'>Juntos desde {formatDate()}</div>
       </div>
+
       {/* Carrossel de imagens */}
       <div className='relative'>
         <img src={feedImages[currentImageIndex]} alt='Foto do casal' className='w-full aspect-square object-cover' />
@@ -361,6 +363,7 @@ const ContadorNamoro = () => {
           ))}
         </div>
       </div>
+
       {/* Ações */}
       <div className='py-3'>
         <div className='flex justify-between items-center'>
@@ -380,28 +383,61 @@ const ContadorNamoro = () => {
           </button>
         </div>
       </div>
+
       {/* Curtidas */}
       <div className='font-semibold mb-2'>{likes || 0} curtidas</div>
+
       {/* Legenda */}
       <div className='mb-4'>
         <span className='font-semibold'>Luiz Henrique: </span>
-        <span className='ml-1'>
-          <br />
-          De: Luiz <br /> Para: Bebel.
+        <p className='ml-1 pr-4'>
           <br />
           <br />
-          Cada um desses <strong>{moment().diff(startRelationshipDate, "days")} dias</strong> ao seu lado foram um presente! ❤️
+          <strong>De: </strong>Luiz
+          <br />
+          <strong>Para:</strong> Bebel.
           <br />
           <br />
-          <strong>#amor #namoro #felicidade #eternidade</strong>
-        </span>
+          <p>Quem diria, não é? 💕 Um ano, minha gatinha! 🐱✨</p>
+          <br />
+          <p>
+            Passou tão rápido que parece que foi ontem que eu estava ansioso para te ver, tremendo de expectativa pelas suas ligações todas
+            as noites. Aqueles dias ainda parecem um sonho...
+          </p>
+          <p>Foi ali que tudo começou, não foi, princesa? 💖</p>
+          <p>Aquelas noites que pareciam durar minutos, mas que na verdade eram horas. ⏱️</p>
+          <br />
+          <p>Em meio a tantas coincidências, nos conhecemos. </p>
+          <p>E hoje, não tenho dúvidas de que este um ano é só o começo de tudo o que vamos viver juntos. 💫</p>
+          <br />
+          <p>Você é, sem sombra de dúvidas, a pessoa mais importante pra mim. 💎</p>
+          <p> Você não é apenas o meu coração, mas também a minha alma. 💕</p>
+          <p>Você é uma gota de perfeição, a minha lua. 🌙</p> <br />
+          <p>Nossos sonhos estão se realizando, e o melhor de tudo é que vamos viver tudo isso lado a lado. 👩‍❤️‍💋‍👨</p>
+          <p>Não vejo a hora de ouvir todas as músicas que você prometeu me dedicar. 🎶</p>
+          <br />
+          <p>Você é a minha princesinha, minha moreninha, minha praieira, o meu bebê, meu dengo, minha vida. 🌟</p>
+          <p>Sempre será o meu tudo. 💕</p>
+          <br />
+          <p>Tenho tanto a expressar para você, mas sei que palavras não são suficientes. 📝 </p>
+          <p> Só de olhar para você, eu sinto que digo tudo o que meu coração transborda. ❤️</p>
+          <br />
+          <p>Este é apenas o primeiro de muitos anos, minha alagoana. 🌊 </p>
+          <p>Te amo eternamente, minha princesa. 👑</p> <br />
+          <p>
+            Cada um desses <strong>{moment().diff(startRelationshipDate, "days")} dias</strong> ao seu lado foi um presente! 🎁❤️
+          </p>
+          <br /> <strong>#amor❤️ #namoro💍 #felicidade😀 #eternidade💒</strong>
+        </p>
       </div>
+
       {/* Botão Ver Mais Comentários */}
       {coments.length > 2 && (
         <button onClick={() => setShowAllComents(!showAllComents)} className='text-gray-500 text-sm mb-2 hover:text-gray-700'>
           {showAllComents ? "Mostrar menos comentários" : `Ver todos os ${coments.length} comentários`}
         </button>
       )}
+
       {/* Comentários */}
       <div className='max-h-64 overflow-y-auto'>
         {visibleComents.map((coment, index) => (
