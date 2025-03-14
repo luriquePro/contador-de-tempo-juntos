@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  touch-action: manipulation;
+}
+
+abbr[title] {
+  text-decoration: none;
+}
