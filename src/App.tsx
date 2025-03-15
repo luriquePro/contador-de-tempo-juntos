@@ -96,14 +96,14 @@ const ContadorNamoro = () => {
     setCurrentImageIndex((prev) => (prev + 1) % shuffedImages.length);
 
     if (flow === "L") setFlow("R");
-  }, [setCurrentImageIndex, shuffedImages.length, flow]);
+  }, [setCurrentImageIndex, flow]);
 
   // Função para ir para a imagem anterior
   const previousImage = useCallback(() => {
     setCurrentImageIndex((prev) => (prev === 0 ? shuffedImages.length - 1 : prev - 1));
 
     if (flow === "R") setFlow("L");
-  }, [setCurrentImageIndex, shuffedImages.length, flow]);
+  }, [setCurrentImageIndex, flow]);
 
   // Função para calcular tempo juntos
   const calcCountUp = useCallback(() => {
