@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Heart, MessageCircle, Send, Bookmark, ChevronLeft, ChevronRight, X, Clock } from "lucide-react";
+import _ from "lodash";
 
 import moment from "moment";
 
@@ -22,10 +23,47 @@ interface IComent {
 
 moment.locale("pt-br");
 
+const noShuffledImages = [
+  "/foto01.jpeg",
+  "/foto02.jpeg",
+  "/foto03.jpeg",
+  "/foto04.jpeg",
+  "/foto05.jpeg",
+  "/foto06.jpeg",
+  "/foto07.jpeg",
+  "/foto08.jpeg",
+  "/foto09.jpeg",
+  "/foto10.jpeg",
+  "/foto11.jpeg",
+  "/foto12.jpeg",
+  "/foto13.jpeg",
+  "/foto14.jpeg",
+  "/foto15.jpeg",
+  "/foto16.jpeg",
+  "/foto17.jpeg",
+  "/foto18.jpeg",
+  "/foto19.jpeg",
+  "/foto20.jpeg",
+  "/foto21.jpeg",
+  "/foto22.jpeg",
+  "/foto23.jpeg",
+  "/foto24.jpeg",
+  "/foto25.jpeg",
+  "/foto26.jpeg",
+  "/foto27.jpeg",
+  "/foto28.jpeg",
+  "/foto29.jpeg",
+  "/foto30.jpeg",
+  "/foto31.jpeg",
+  "/foto32.jpeg",
+];
+
+const shuffedImages = _.shuffle(noShuffledImages);
+
 const ContadorNamoro = () => {
   const myUser = { login: "zzz.bebel" };
   const startRelationshipDate = moment("2024-03-18T19:00:00").utc();
-  const feedImages = ["/foto01.jpeg", "/foto02.jpeg", "/foto03.jpeg", "/foto04.jpeg", "/foto05.jpeg", "/foto06.jpeg"];
+
   const defaultComents: IComent[] = [
     { usuario: "Pessoa 01", texto: "Casal mais lindo! ❤️", data: "2025-03-10T14:30:00", id: 1 },
     { usuario: "Pessoa 02", texto: "Muitas felicidades! 🎉", data: "2025-03-12T09:45:00", id: 2 }
@@ -55,17 +93,17 @@ const ContadorNamoro = () => {
 
   // Função para ir para a próxima imagem
   const nextImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev + 1) % feedImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % shuffedImages.length);
 
     if (flow === "L") setFlow("R");
-  }, [setCurrentImageIndex, feedImages.length, flow]);
+  }, [setCurrentImageIndex, shuffedImages.length, flow]);
 
   // Função para ir para a imagem anterior
   const previousImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev === 0 ? feedImages.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) => (prev === 0 ? shuffedImages.length - 1 : prev - 1));
 
     if (flow === "R") setFlow("L");
-  }, [setCurrentImageIndex, feedImages.length, flow]);
+  }, [setCurrentImageIndex, shuffedImages.length, flow]);
 
   // Função para calcular tempo juntos
   const calcCountUp = useCallback(() => {
@@ -282,7 +320,7 @@ const ContadorNamoro = () => {
         <div className='h-12 w-12 md:h-18 md:w-18 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center'>
           <div className='h-11 w-11 md:h-17 md:w-17 bg-white rounded-full flex items-center justify-center'>
             <img
-              src={feedImages[currentImageIndex < feedImages.length - 1 ? currentImageIndex + 1 : 0]}
+              src={shuffedImages[currentImageIndex < shuffedImages.length - 1 ? currentImageIndex + 1 : 0]}
               alt='Perfil'
               className='h-10 w-10 md:h-15 md:w-15 rounded-full'
             />
@@ -339,7 +377,7 @@ const ContadorNamoro = () => {
 
       {/* Carrossel de imagens */}
       <div className='relative'>
-        <img src={feedImages[currentImageIndex]} alt='Foto do casal' className='w-full aspect-square object-cover' />
+        <img src={shuffedImages[currentImageIndex]} alt='Foto do casal' className='w-full aspect-square object-cover' />
 
         {/* Botões de navegação */}
         <button
@@ -358,7 +396,7 @@ const ContadorNamoro = () => {
 
         {/* Indicadores do carrossel */}
         <div className='absolute bottom-2 left-0 right-0 flex justify-center space-x-1'>
-          {feedImages.map((_, index) => (
+          {shuffedImages.map((_, index) => (
             <div key={index} className={`h-2 w-2 rounded-full ${index === currentImageIndex ? "bg-blue-500" : "bg-gray-300"}`} />
           ))}
         </div>
